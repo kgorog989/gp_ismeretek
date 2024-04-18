@@ -1,20 +1,25 @@
 logreg = function(X, Y) {
+
+  #this is the reimplementation of the exp_reg function
+  #in this version, i incorporated the lin_reg function to get a and b enentually
+
   if (length(X) != length(Y)) {
     print('Samples not of same length!')
     return(NULL)
   }
   
-  n = length(X)
-  x = sum(X)
-  y = sum(log(Y))
-  x2 = sum(X^2)
-  xy = sum(X * log(Y))
+  lnY = log(Y)
+
+  source("C:\\Users\\Admin\\Documents\\Gazdasági és pénzügyi modellek\\gp_ismeretek\\linreg.r")
+  results = linreg(X, lnY)
+
+  b = results[1]
+  c = results[2]
+
+  a = exp(c)
+
   
-  base_det = n * x2 - x^2
-  b = (n * xy - x * y) / base_det
-  a = exp((y - b * x) / n)
-  
-  cat('ln(y) = ', b, '* x + ln(', a, ')\n')
+  cat('y = ', a, '* exp(', b, '* x)\n')
   
   return(c(a, b))
-}
+};

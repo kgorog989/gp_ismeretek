@@ -5,7 +5,8 @@ fuggetlenseg_vizsg = function(A){
   khi2 = 0
   for(i in 1:dim[1]){
     for(j in 1:dim[2]){
-      khi2 = khi2 + ((A[i, j] - ((sum(A[i,]) * sum(A[,j])) / N))^2) / ((sum(A[i,]) * sum(A[,j])) / N)
+	value = (sum(A[i,]) * sum(A[,j])) / N
+      khi2 = khi2 + ((A[i, j] - value)^2) / value
     }
   }
 
